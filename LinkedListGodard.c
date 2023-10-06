@@ -437,4 +437,237 @@ int main() {
 }
 
 
-// // Circular Linked List
+// // // Circular Singly Linked List
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdbool.h>
+#include <ctype.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <time.h>
+
+// Function Declaration
+
+struct node {
+    int data;
+    struct node * next;
+};
+
+void traverseCSLL(struct node * head){
+    struct node * p = head;
+    printf("%d -> ",p->data);
+    p = p->next;
+    while (p != head){
+        printf("%d -> ",p->data);
+        p = p->next;
+    }
+    printf("HEAD");
+}
+
+struct node * insertBeg (struct node * head, int newdata){
+    struct node * ptr = (struct node *)malloc(sizeof(struct node));
+    ptr->data = newdata;
+    struct node * p = head->next;
+    while (p->next != head){
+        p = p->next;
+    }
+    p->next = ptr;
+    ptr->next = head;
+    return ptr;
+}
+
+struct node * insertEnd (struct node * head, int newdata){
+    struct node * ptr = (struct node *)malloc(sizeof(struct node));
+    ptr->data = newdata;
+    struct node * p = head->next;
+    while(p->next != head){
+        p = p->next;
+    }
+    p->next = ptr;
+    ptr->next = head;
+    return head;
+}
+
+struct node * insertAfterNode (struct node * head, int givennode, int newdata){
+    struct node * ptr = (struct node *)malloc(sizeof(struct node));
+    ptr->data = newdata;
+    struct node * p = head;
+    while (p->data != givennode){
+        p = p->next;
+    }
+    ptr->next = p->next;
+    p->next = ptr;
+    return head;
+}
+
+struct node * deleteBeg (struct node * head){
+    struct node * p = head;
+    struct node * temp;
+    while (p->next != head){
+        p = p->next;
+    }
+    temp = head;
+    p->next = head->next;
+    head = head->next;
+    free (temp);
+    return head;
+}
+
+struct node * deleteEnd (struct node * head){
+    struct node * p = head;
+    struct node * q = head->next;
+    while (q->next != head){
+        q = q->next;
+        p = p->next;
+    }
+    p->next = head;
+    free(q);
+    return head;
+}
+
+int searchSCLL (struct node * head, int key);
+
+struct node * deleteNode (struct node * head, int givennode){
+    struct node * p = head;
+    struct node * q = head->next;
+    if (searchSCLL(head,givennode)){
+        while (q->data != givennode){
+            q = q->next;
+            p = p->next;
+        }
+        p->next = q->next;
+        free(q);
+    }
+    else {
+        printf("\nData %d Not Found To Be Deleted\n",givennode);
+    }
+    return head;
+}
+
+int searchSCLL (struct node * head, int key){
+    struct node * p = head;
+    while (p->data != key && p->next != head){
+        p = p->next;
+    }
+    if (p->data == key){
+        return 1;
+    }
+    return 0;
+}
+
+int main() {
+    struct node * head = (struct node *)malloc((sizeof(struct node)));
+    struct node * second = (struct node *)malloc((sizeof(struct node)));
+    struct node * third = (struct node *)malloc((sizeof(struct node)));
+    struct node * fourth = (struct node *)malloc((sizeof(struct node)));
+
+    head->data = 34;
+    head->next = second;
+
+    second->data = 44;
+    second->next = third;
+
+    third->data = 54;
+    third->next = fourth;
+
+    fourth->data = 64;
+    fourth->next = head;
+
+    printf("\n The Circular singly linked list is - \n");
+
+    traverseCSLL(head);
+
+    printf("\n After Inserting To Beginning - \n");
+
+    head = insertBeg(head,14);
+
+    traverseCSLL(head);
+
+    printf("\n After Inserting To Beginning Again - \n");
+
+    head = insertBeg(head,15);
+
+    traverseCSLL(head);
+
+    printf("\n After Inserting To End - \n");
+
+    head = insertEnd(head,84);
+
+    traverseCSLL(head);
+
+    printf("\n After Inserting To End Again - \n");
+
+    head = insertEnd(head,94);
+
+    traverseCSLL(head);
+
+    printf("\n After Inserting After A Node - \n");
+
+    head = insertAfterNode(head,64,65);
+
+    traverseCSLL(head);
+
+    printf("\n After Inserting After A Node Again - \n");
+
+    head = insertAfterNode(head,65,66);
+
+    traverseCSLL(head);
+
+    printf("\n After Deleting Beginning Node - \n");
+
+    head = deleteBeg(head);
+
+    traverseCSLL(head);
+
+    printf("\n After Deleting Beginning Node Again - \n");
+
+    head = deleteBeg(head);
+
+    traverseCSLL(head);
+
+    printf("\n After Deleting End Node - \n");
+
+    head = deleteEnd(head);
+
+    traverseCSLL(head);
+
+    printf("\n After Deleting End Node Again - \n");
+
+    head = deleteEnd(head);
+
+    traverseCSLL(head);
+
+    printf("\n After Deleting Node - \n");
+
+    head = deleteNode(head,65);
+
+    traverseCSLL(head);
+
+    printf("\n After Deleting Node Again - \n");
+
+    head = deleteNode(head,69);
+
+    traverseCSLL(head);
+
+    printf("\nSearching ...\n");
+
+    if (searchSCLL(head,64)){
+        printf("\nData 64 Found\n");
+    }
+    else {
+        printf("\nData 64 NOt Found\n");
+    }
+
+    if (searchSCLL(head, 69)){
+        printf("\nData 69 Found\n"); 
+    }
+
+    else {
+        printf("\nData 69 NOt Found\n");
+    }
+
+    return(0);
+}
