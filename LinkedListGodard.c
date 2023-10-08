@@ -437,6 +437,7 @@ int main() {
 }
 
 
+
 // // // Circular Singly Linked List
 
 #include <stdio.h>
@@ -667,6 +668,257 @@ int main() {
 
     else {
         printf("\nData 69 NOt Found\n");
+    }
+
+    return(0);
+}
+
+// // // // Circular Doubly Linked List
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdbool.h>
+#include <ctype.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <time.h>
+
+// Function Declaration
+
+struct node {
+    int data;
+    struct node * next;
+    struct node * prev;
+};
+
+void traversalDCLL (struct node * head){
+    struct node * p = head;
+    printf("TAIL");
+    printf(" <- %d -> ",p->data);
+    p = p->next;
+    while (p != head){
+        printf(" <- %d -> ",p->data);
+        p = p->next;
+    }
+    printf("HEAD");
+}
+
+struct node * insertBeg(struct node * head, int newdata){
+    struct node * ptr = (struct node *)malloc(sizeof(struct node));
+    ptr->data = newdata;
+    struct node * p = head->next;
+    while (p->next != head){
+        p = p->next;
+    }    
+    p->next = ptr;
+    ptr->prev = p;
+    ptr->next = head;
+    head->prev = ptr;
+    return ptr;
+}
+
+struct node * insertAfterNode (struct node * head, int givennode, int newdata){
+    struct node * ptr =  (struct node *)malloc(sizeof(struct node));
+    ptr->data = newdata;
+    struct node * p = head->next;
+    while(p->data != givennode){
+        p = p->next;
+    }   
+    ptr->next = p->next;
+    p->next->prev = ptr;
+    p->next = ptr;
+    ptr->prev = p;
+    return head;
+}
+
+struct node * insertEnd (struct node * head, int newdata){
+    struct node * ptr = (struct node *)malloc(sizeof(struct node));
+    ptr->data = newdata;
+    struct node * p = head->next;
+    while (p->next != head){
+        p = p->next;
+    }
+    p->next = ptr;
+    ptr->next = head;
+    ptr->prev = p;
+    head->prev = ptr;
+    return head;
+}
+
+struct node * deleteBeg(struct node * head){
+    struct node * p = head;
+    struct node * temp;
+    while (p->next != head){
+        p = p->next;
+    }
+    temp = head;
+    p->next = head->next;
+    head = head->next;
+    head->prev = p;
+    free (temp);
+    return head;
+}
+
+struct node * deleteEnd(struct node * head){
+    struct node * p = head;
+    struct node * q = head->next;
+    while (q->next != head){
+        p = p->next;
+        q = q->next;
+    }   
+    p->next = head;
+    head->prev = p;
+    free(q);
+    return head;
+}
+
+int searchDCLL(struct node * head, int key){
+    struct node * p = head;
+    while (p->data != key && p->next != head){
+        p = p->next;
+    }    
+    if (p->data == key){
+        return 1;
+    }
+    return 0;
+}
+
+struct node * deleteNode(struct node * head, int givennode){
+    struct node * q = head;
+    struct node * p = head->next;
+    if (searchDCLL(head,givennode)){
+        while (p->data != givennode){
+            p = p->next;
+            q = q->next;
+        }
+        q->next = p->next;
+        p->next->prev = q;
+        free(p);
+    }
+    else {
+        printf("\n%d Not Found So Can't Delete.\n",givennode);
+    }
+    return head;
+}
+
+int main() {
+    struct node * head = (struct node*)malloc(sizeof(struct node));
+    struct node * second = (struct node*)malloc(sizeof(struct node));
+    struct node * third = (struct node*)malloc(sizeof(struct node));
+    struct node * fourth = (struct node*)malloc(sizeof(struct node));
+
+    head->prev = fourth;
+    head->data = 34;
+    head->next = second;
+
+    second->prev = head;
+    second->data = 44;
+    second->next = third;
+
+    third->prev = second;
+    third->data = 54;
+    third->next = fourth;
+
+    head->prev = third;
+    fourth->data = 64;
+    fourth->next = head;
+
+    printf("\nThe Doubly Circular Linked List - \n");
+
+    traversalDCLL(head);
+
+    printf("\nAfter Beginning Insertion - \n");
+
+    head = insertBeg(head,11);
+
+    traversalDCLL(head);
+
+    printf("\nAfter Beginning Insertion Again - \n");
+
+    head = insertBeg(head,12);
+
+    traversalDCLL(head);
+
+    printf("\nAfter Node Insertion - \n");
+
+    head = insertAfterNode(head,12,69);
+
+    traversalDCLL(head);
+
+    printf("\nAfter Node Insertion Again - \n");
+
+    head = insertAfterNode(head,69,70);
+
+    traversalDCLL(head);
+
+    printf("\nAfter End Node Insertion - \n");
+
+    head = insertEnd(head,88);
+
+    traversalDCLL(head);
+
+    printf("\nAfter End Node Insertion Again - \n");
+
+    head = insertEnd(head,89);
+
+    traversalDCLL(head);
+    
+    printf("\nAfter Beginning Deletion  - \n");
+
+    head = deleteBeg(head);
+
+    traversalDCLL(head);
+    
+    printf("\nAfter Beginning Deletion Again - \n");
+
+    head = deleteBeg(head);
+
+    traversalDCLL(head);
+    
+    printf("\nAfter End Deletion - \n");
+
+    head = deleteEnd(head);
+
+    traversalDCLL(head);
+    
+    printf("\nAfter End Deletion Again - \n");
+
+    head = deleteEnd(head);
+
+    traversalDCLL(head);
+    
+    printf("\nNode Deletion - \n");
+
+    head = deleteNode(head,34);
+
+    traversalDCLL(head);
+    
+    printf("\nNode Deletion Again - \n");
+
+    head = deleteNode(head,44);
+
+    traversalDCLL(head);
+    
+    printf("\nNode Deletion Again - \n");
+
+    head = deleteNode(head,94);
+
+    traversalDCLL(head);
+
+    if (searchDCLL(head,64)){
+        printf("\nData 64 Found\n");
+    }
+    else {
+        printf("\nData 64 Not Found\n");
+    }
+    
+    if (searchDCLL(head,99)){
+        printf("\nData 99 Found\n");
+    }
+    else {
+        printf("\nData 99 Not Found\n");
     }
 
     return(0);
