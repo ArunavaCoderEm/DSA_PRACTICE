@@ -1,4 +1,97 @@
-// Stack Using array
+// //  Stack Using Simple Array
+// LIBRARIES INCLUDED
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdbool.h>
+#include <ctype.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <time.h>
+
+// Function Declaration
+#define len 10
+// Global Variable Accessed Upto The End From Here
+int stack[len], top = -1; 
+
+int isfull() {
+    if (top == len - 1){
+        return 1;
+    }
+    return 0;
+}
+
+int isempty(){
+    if (top == -1){
+        return 1;
+    }
+    return 0;
+}
+
+void push(int val){
+    if (isfull(stack)){
+        printf("\nStack Overflow Can't Push\n");
+    }
+    else {
+        top++;
+        stack[top] = val;
+    }
+}
+
+int pop(){
+    if(isempty(stack)){
+        printf("\nStack Underflow Can't Pop\n");
+    }
+    else {
+        int temp = stack[top];
+        printf("\nPopped Value From Top Is - %d\n",temp);
+        top--;
+        return temp;
+    }
+}
+
+void peek(){
+    printf("\nTop Element Is %d\n",stack[top]);
+}
+
+void displaystack(){
+    int i;
+    if (isempty(stack)){
+        printf("\nStack Empty\n");
+    }
+    else {
+        printf("Top\n");
+        for (i = top; i >= 0; --i){
+            printf("%d\n",stack[i]);
+        }
+        printf("Bottom");
+    }
+}
+
+// MAIN FUNCTION
+
+int main() {
+    pop();
+    push(23);
+    push(33);
+    push(43);
+    displaystack();
+    push(53);
+    peek();
+    push(63);
+    push(73);
+    push(83);
+    push(93);
+    push(103);
+    push(113);
+    displaystack();
+    peek();
+    push(123);
+    return(0);
+}
+
+// Stack Using Dynamic Array
 
 #include <stdio.h>
 #include <string.h>
