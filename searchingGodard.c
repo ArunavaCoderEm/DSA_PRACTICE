@@ -97,7 +97,7 @@ int Binary_search(int array[], int key, int low, int high) {
 // MAIN FUNCTION
 
 int main() {
-    int i,j,n,arr[100],k = 0, m =1,key;
+    int i,j,n,arr[100],k, m =1,key;
     printf("How Many Elements In Array ? - ");
     scanf("%d",&n);
     for (i = 0; i < n; ++i){
