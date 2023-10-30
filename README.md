@@ -3,6 +3,6 @@ These are all my Data Structure And Algorithm Codes From My 3RD Semester. Will B
 
 # Added - 
 1. Singly Linked List , Doubly Linked List, Singly Circular Linked List, Doubly Circular Linked List - LinkedListGodard.c
-2. Stack Using Array And Linked List - stackgodard.c
-3. Queue Using Array And Linked List - queueGodard.c
+2. Stack Using Array (Static And Dynamic) And Linked List (Singly) - stackgodard.c
+3. Queue Using Array (Static And Dynamic) And Linked List (Singly) - queueGodard.c
 4. Linear Search And Binary Search - searchingGodard.c
