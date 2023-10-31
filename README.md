@@ -6,3 +6,10 @@ These are all my Data Structure And Algorithm Codes From My 3RD Semester. Will B
 2. Stack Using Array (Static And Dynamic) And Linked List (Singly) - stackgodard.c
 3. Queue Using Array (Static And Dynamic) And Linked List (Singly) - queueGodard.c
 4. Linear Search And Binary Search - searchingGodard.c
+5. Bubble Sort And Merge Sort - sortingGodard.c
+
+# Update ?
+Will Be Updating Them Twice A Week.
+
+# Programming Language Used - 
+C - Language
