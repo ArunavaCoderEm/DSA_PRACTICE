@@ -92,27 +92,36 @@ int isBinarySearchTree (Node * root){
     }
 }
 // If BST Then Only ->
+// Recursive Searching
 Node * searchBST (Node * root, int key){
-    if (!isBinarySearchTree(root)){
-        printf("\nMake It A Binary Search Tree First\n");
+    if (root == NULL){
+        return root;
     }
-
+    if (key == root->data){
+        return root;
+    }
+    else if (key > root->data){
+        return searchBST(root->right, key);
+    }
     else {
-        if (root == NULL){
-            return root;
-        }
-        if (key == root->data){
-            return root;
-        }
-        else if (key > root->data){
-            return searchBST(root->right, key);
-        }
-        else {
-            return searchBST(root->left, key);
-        }
+        return searchBST(root->left, key);
     }
 }
-
+// Iterative Searching
+Node * SearchBSTI (Node * root, int key){
+    while (root != NULL){
+        if (root->data == key){
+            return root;
+        }
+        else if (root->data < key){
+            root = root->right;
+        }
+        else {
+            root = root->left;
+        }
+    }
+        return NULL;
+}
 
 // MAIN FUNCTION
 
@@ -145,7 +154,7 @@ int main() {
 
     childR->left = childRL;
     childR->right = childRR;
-    
+
 
     // Pre Order Traversal  (root -> left -> right)
     printf("\nPreorder Recursive\n");
@@ -169,7 +178,8 @@ int main() {
     else {
         printf("\nIt's Not A Binary Search Tree\n");
     }
-
+    // Recursive Search
+    printf("\nRecursive Search\n");
     if (searchBST(root,9)){
         printf("\n9 Found\n");
     }
@@ -178,6 +188,21 @@ int main() {
     }
 
     if (searchBST(root,20)){
+        printf("\n20 Found\n"); 
+    }
+    else {
+        printf("\n20 Not Found\n");
+    }
+    // Iterative Search
+    printf("\nIterative Search\n");
+    if (SearchBSTI(root,9)){
+        printf("\n9 Found\n");
+    }
+    else {
+        printf("\n9 Not Found\n");
+    }
+
+    if (SearchBSTI(root,20)){
         printf("\n20 Found\n");
     }
     else {
