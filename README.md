@@ -7,7 +7,7 @@ These are all my Data Structure And Algorithm Codes From My 3RD Semester. Will B
 3. Queue Using Array (Static And Dynamic) And Linked List (Singly) - queueGodard.c
 4. Linear Search And Binary Search - searchingGodard.c
 5. Bubble Sort And Merge Sort - sortingGodard.c
-6. Binary Tree And Binary Search Tree - treeGodard.c
+6. Binary Tree And Binary Search Tree - treesGodard.c
 
 # Update ?
 Will Be Updating Them Twice A Week.
