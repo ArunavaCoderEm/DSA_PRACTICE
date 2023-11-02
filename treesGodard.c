@@ -123,6 +123,30 @@ Node * SearchBSTI (Node * root, int key){
         return NULL;
 }
 
+void insertBST (Node * root, int given){
+    Node * prev = NULL;
+    while (root != NULL){
+        prev = root;
+        if (root->data == given){
+            printf("\nDuplicate Can't Be Inserted\n");
+            return;
+        }
+        else if (given > root->data){
+            root = root->right;
+        }
+        else {
+            root = root->left;
+        }
+    }
+    Node * ptr = createNode(given);
+    if (given < prev->data){
+        prev->left = ptr;
+    }
+    else {
+        prev->right  = ptr;
+    }
+}
+
 // MAIN FUNCTION
 
 int main() {
@@ -224,6 +248,12 @@ int main() {
 
     // In Order Traversal (left -> root -> right) for BST is Ascending Order
     InOrderTraversalR(root);
+
+    printf("\n");
+    
+    insertBST(root,17);
+    InOrderTraversalR(root);
+    printf("\n%d\n",root->right->right->right->data);
 
     return(0);
 }
