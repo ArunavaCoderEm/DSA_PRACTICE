@@ -244,16 +244,17 @@ int main() {
     else {
         root = deleteNode(root,delete);
     }
-    printf("\n");
 
     // In Order Traversal (left -> root -> right) for BST is Ascending Order
     InOrderTraversalR(root);
 
     printf("\n");
-    
+    // Insert Node
     insertBST(root,17);
+    printf("\nAfter Insertion\n");
     InOrderTraversalR(root);
-    printf("\n%d\n",root->right->right->right->data);
+    printf("\n");
+    printf("\n%d\n",root->right->right->data);
 
     return(0);
 }
