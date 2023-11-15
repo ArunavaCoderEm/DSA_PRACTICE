@@ -13,6 +13,7 @@ These are all my Data Structure And Algorithm Codes From My 3RD Semester. Will B
 # For AVL Tree - Diagram Used
 
 ![Screenshot 2023-11-16 005324](https://github.com/ArunavaCoderEm/DSA_3RD_SEM_PRACTICE/assets/121813676/929d8b20-9e35-4b21-92be-5ec2a997b639)
+![22](https://github.com/ArunavaCoderEm/DSA_3RD_SEM_PRACTICE/assets/121813676/d3dd32a2-c431-43e4-a107-965fdbb53fc7)
 
 
 Now the AVL conversion has several answer for same question and the above mentioned is one of them , to get the output that's showing in terminal you can try different ways considering the correct methods.
