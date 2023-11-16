@@ -17,6 +17,7 @@ These are all my Data Structure And Algorithm Codes From My 3RD Semester. Will B
 
 
 Now the AVL conversion has several answer for same question and the above mentioned is one of them , to get the output that's showing in terminal you can try different ways considering the correct methods.
+BUT IN MY CASE THE PRE-ORDER (ROOT - LEFT - RIGHT) TRAVERSAL IS -- 14 -> 11 -> 10 -> 13 -> 15 -> 16
 
 
 # Update ?
