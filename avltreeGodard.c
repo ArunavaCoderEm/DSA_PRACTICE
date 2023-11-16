@@ -36,15 +36,14 @@ int check_height (avlnode * n){
 }
 
 int max (int n1 , int n2){
-    int y = (n1 > n2) ? n1 : n2;
-    return y;
+    return ((n1 > n2) ? n1 : n2);
 }
 
 int check_balanceFactor (avlnode * n){
     if (n == NULL){
         return 0;
     }
-    return (check_height(n->right) - check_height(n->left));
+    return (check_height(n->left) - check_height(n->right));
 }
 
 //      root                                         p
@@ -88,13 +87,12 @@ avlnode * insertTreeREC (avlnode * root, int newdata){
     if (root == NULL){
         return createNode(newdata);
     }
-    if (newdata > root->data){
-        root->right = insertTreeREC(root->right, newdata);
-    }
-    else {
+    if (newdata < root->data){
         root->left = insertTreeREC(root->left, newdata);
     }
-    return root;
+    else if (newdata > root->data) {
+        root->right = insertTreeREC(root->right, newdata);
+    }
     // height
     root->height = max(check_height(root->right),check_height(root->left)) + 1;
     int balancefactor = check_balanceFactor(root);
@@ -140,7 +138,8 @@ void preorderTr (avlnode * root){
 // MAIN FUNCTION
 
 int main() {
-    avlnode * root = createNode(10);
+    avlnode * root = NULL;
+    root = insertTreeREC(root,10);
     root = insertTreeREC(root,11);
     root = insertTreeREC(root,14);
     root = insertTreeREC(root,15);
