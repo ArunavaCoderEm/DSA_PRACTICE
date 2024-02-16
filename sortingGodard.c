@@ -156,7 +156,7 @@ int main() {
         printf(" %d ",arr[k]);
     }  
     printf("\nSorting Again ...\n");
-    selection_sort(arr,0,n-1);
+    selection_sort(arr,n-1);
     printf("\nselection Sorted Array Is -\n");
     for (k = 0; k < n; ++k){
         printf(" %d ",arr[k]);
