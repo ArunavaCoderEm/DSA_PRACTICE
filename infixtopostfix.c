@@ -93,7 +93,7 @@ char* infToPost(char* inf){
             }
         }
     }
-    while (! isEmpty(st))    {
+    while (! isEmpty(st)){
         post[po++] = pop(st);
     }
     post[po] = '\0';
