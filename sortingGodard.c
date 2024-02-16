@@ -99,7 +99,30 @@ void selection_sort(int arr[], int n){
     }
 }
 //
+nt pivot (int arr[],int low, int high){
+    int piv = arr[low],i = low + 1, j = high;
+    do{
+        while(arr[i] <= piv) i++;
+        while(arr[j] > piv) j--;
+        if(i < j){
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    } while(i < j);
+    int temp = arr[low];
+    arr[low] = arr[j];
+    arr[j] = temp;
+    return j;
+}
 
+void quicksort(int arr[], int low, int high){
+    if(low < high){
+        int part = pivot(arr,low,high);
+        quicksort(arr,low,part);
+        quicksort(arr,part + 1, high);
+    }
+}
 // MAIN FUNCTION
 
 int main() {
@@ -134,7 +157,13 @@ int main() {
     }  
     printf("\nSorting Again ...\n");
     selection_sort(arr,0,n-1);
-    printf("\selection Sorted Array Is -\n");
+    printf("\nselection Sorted Array Is -\n");
+    for (k = 0; k < n; ++k){
+        printf(" %d ",arr[k]);
+    }  
+    printf("\nSorting Again ...\n");
+    quicksort(arr,0,n-1);
+    printf("\nquick Sorted Array Is -\n");
     for (k = 0; k < n; ++k){
         printf(" %d ",arr[k]);
     }  
