@@ -110,8 +110,6 @@ char * infToPost(char* inf){
 }
 
 
-
-
 // MAIN FUNCTION
 
 int main() {
