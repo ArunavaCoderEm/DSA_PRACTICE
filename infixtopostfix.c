@@ -74,7 +74,7 @@ int sign(char s){
     return 0;
 }
 
-char* infToPost(char* inf){
+char * infToPost(char* inf){
     struct stack * st = (struct stack *) malloc(sizeof(struct stack));
     st->size = 100; st->top = -1;
     st->arr = (char *)malloc(st->size * sizeof(char));
@@ -83,9 +83,18 @@ char* infToPost(char* inf){
     while (inf[in] != '\0'){
         if(! sign(inf[in])){
             post[po++] = inf[in++];
+        }   
+        else if (inf[in] == '(') {
+            push(st, inf[in++]);
         }
+        else if(inf[in] == ')'){
+            while(peek(st) != '('){
+                post[po++] = peek(st);
+                pop(st);
+            }
+        }   
         else{
-            if(weight(inf[in]) > weight(peek(st))){
+            if(weight(inf[in]) >= weight(peek(st))){
                 push(st, inf[in++]);
             }
             else{
@@ -99,6 +108,7 @@ char* infToPost(char* inf){
     post[po] = '\0';
     return post;
 }
+
 
 
 
