@@ -83,6 +83,23 @@ void Merge_sort (int arr[], int lows, int highs){
     }
 }
 //
+
+void selection_sort(int arr[], int n){
+    int i,j,min;
+    for (i = 0; i < n - 1; ++i){
+        min = i;
+        for(j = i+1; j < n; ++j){
+            if(arr[j] < arr[min]){
+                min = j;
+            }
+        }
+        int temp = arr[i];
+        arr[i] = arr[min];
+        arr[min] = temp;
+    }
+}
+//
+
 // MAIN FUNCTION
 
 int main() {
@@ -114,6 +131,12 @@ int main() {
     printf("\nMerge Sorted Array Is -\n");
     for (k = 0; k < n; ++k){
         printf(" %d ",arr[k]);
-    }      
+    }  
+    printf("\nSorting Again ...\n");
+    selection_sort(arr,0,n-1);
+    printf("\selection Sorted Array Is -\n");
+    for (k = 0; k < n; ++k){
+        printf(" %d ",arr[k]);
+    }  
     return(0);
 }
