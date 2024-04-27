@@ -10,6 +10,8 @@ These are all my Data Structure And Algorithm Codes From My 3RD Semester. Will B
 6. Binary Tree And Binary Search Tree - treesGodard.c
 7. AVL tree insertion , rotation , creation , balance factor and height - avltreeGodard.c
 
+ Rest are added as their own file name.
+
 # For AVL Tree - Diagram Used
 
 ![Screenshot 2023-11-16 005324](https://github.com/ArunavaCoderEm/DSA_3RD_SEM_PRACTICE/assets/121813676/929d8b20-9e35-4b21-92be-5ec2a997b639)
