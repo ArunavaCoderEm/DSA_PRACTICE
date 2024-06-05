@@ -99,7 +99,7 @@ void selection_sort(int arr[], int n){
     }
 }
 //
-nt pivot (int arr[],int low, int high){
+int pivot (int arr[],int low, int high){
     int piv = arr[low],i = low + 1, j = high;
     do{
         while(arr[i] <= piv) i++;
