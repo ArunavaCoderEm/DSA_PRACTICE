@@ -10,7 +10,7 @@ void printPath(int path[], int pos) {
   printf("\n");
 }
 
-bool isSafe(int v, int path[], int pos) {
+bool iscyc(int v, int path[], int pos) {
   for (int i = 0; i < pos; i++) {
     if (path[i] == v) {
       return false;
@@ -29,7 +29,7 @@ bool hamUtil(int graph[N][N], bool vis[], int path[], int pos, int v) {
     }
   }
   for (int i = 0; i < N; i++) {
-    if (graph[v][i] == 1 && isSafe(i, path, pos)) {
+    if (graph[v][i] == 1 && iscyc(i, path, pos)) {
       vis[i] = true;
       path[pos] = i;
       if (hamUtil(graph, vis, path, pos + 1, i)) {
