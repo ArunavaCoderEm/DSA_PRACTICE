@@ -15,8 +15,8 @@ void printBoard(int board[N][N]) {
 bool isSafe(int board[N][N], int row, int col) {
     int i, j;
 
-    for (i = 0; i < col; i++) {
-        if (board[row][i])
+    for (j = 0; j < col; j++) {
+        if (board[row][j])
             return false;
     }
 
