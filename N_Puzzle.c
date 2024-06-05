@@ -98,10 +98,10 @@ void solvePuzzle(int puzzle[N][N], int goal[N][N]) {
             }
         }
     }
-    int misplacedLeft = 10;
-    int misplacedRight = 10;
-    int misplacedUp = 10;
-    int misplacedDown= 10;
+    int misplacedLeft = 99;
+    int misplacedRight = 99;
+    int misplacedUp = 99;
+    int misplacedDown= 99;
 
     //left move 
     if(j-1>=0){
