@@ -9,13 +9,13 @@ int min(int a, int b) {
     return (a < b) ? a : b;
 }
 
-int tsp (int graph[V][V], int current, int count){
-    if(count == V) return graph[current][0];
+int tsp (int graph[V][V], int current, int node){
+    if(node == V) return graph[current][0];
     visited[current] = 1;
     int minc = INT_MAX;
     for (int i = 0; i < V; ++i){
         if(!visited[i]){
-            int cost = graph[current][i] + tsp(graph,i,count + 1);
+            int cost = graph[current][i] + tsp(graph,i,node + 1);
             minc = min(minc,cost);
         }
     }
