@@ -14,7 +14,7 @@ void initQueue(struct Queue *q) {
 }
 
 bool isEmpty(struct Queue *q) {
-    return q->rear == -1;
+    return q->front == -1;
 }
 
 void enqueue(struct Queue *q, int value) {
