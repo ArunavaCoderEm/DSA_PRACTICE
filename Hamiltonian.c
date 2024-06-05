@@ -3,15 +3,15 @@
 
 #define N 4  
 
-void printPath(int path[], int pathLen) {
-  for (int i = 0; i < pathLen; i++) {
-    printf("%d ", path[i]);
+void printPath(int path[], int pos) {
+  for (int i = 0; i < pos; i++) {
+    printf("%d -> ", path[i]);
   }
   printf("\n");
 }
 
-bool isSafe(bool vis[], int v, int path[], int pathLen) {
-  for (int i = 0; i < pathLen; i++) {
+bool isSafe(int v, int path[], int pos) {
+  for (int i = 0; i < pos; i++) {
     if (path[i] == v) {
       return false;
     }
@@ -19,20 +19,20 @@ bool isSafe(bool vis[], int v, int path[], int pathLen) {
   return true;
 }
 
-bool hamUtil(int graph[N][N], bool vis[], int path[], int pathLen, int v) {
-  if (pathLen == N) {
-    if (graph[path[pathLen - 1]][v] == 1) {
-      printPath(path, pathLen);
+bool hamUtil(int graph[N][N], bool vis[], int path[], int pos, int v) {
+  if (pos == N) {
+    if (graph[path[pos - 1]][v] == 1) {
+      printPath(path, pos);
       return true;
     } else {
       return false;
     }
   }
   for (int i = 0; i < N; i++) {
-    if (graph[v][i] == 1 && isSafe(vis, i, path, pathLen)) {
+    if (graph[v][i] == 1 && isSafe(i, path, pos)) {
       vis[i] = true;
-      path[pathLen] = i;
-      if (hamUtil(graph, vis, path, pathLen + 1, i)) {
+      path[pos] = i;
+      if (hamUtil(graph, vis, path, pos + 1, i)) {
         return true;
       }
       vis[i] = false;
