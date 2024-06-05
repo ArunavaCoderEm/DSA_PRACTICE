@@ -45,9 +45,7 @@ double frac(int W, double wt[], double val[], int n){
         }
     }
     
-    return to;
-    
-    
+    return to;  
 }
 
 
