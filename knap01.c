@@ -3,6 +3,54 @@
 int max(int a, int b) {
     return (a > b) ? a : b;
 }
+// fractional greedy
+
+void swap(double * a, double * b){
+    double temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void sortpro (double val[], double wt[], int n){
+    double vbi[n];
+    for(int i = 0; i < n; ++i){
+        vbi[i] = val[i] / wt[i];
+    }
+    for(int j = 0; j < n-1; ++j){
+        for(int k = j+1; k < n; ++k){
+            if(vbi[k] > vbi[j]){
+                swap(&vbi[j],&vbi[k]);
+                swap(&val[j],&val[k]);
+                swap(&wt[j],&wt[k]);
+            }
+        }
+    }
+}
+
+double frac(int W, double wt[], double val[], int n){
+    
+    double to = 0.0;
+    double curr = 0.0;
+    sortpro(val,wt,n);
+    for(int i = 0; i < n; ++i){
+        if(curr + wt[i] < W){
+            to += val[i];
+            curr += wt[i];
+        }
+        else{
+            double rem = W - curr; 
+            double re = val[i] * (rem/wt[i]);
+            to += (re);
+            break;
+        }
+    }
+    
+    return to;
+    
+    
+}
+
+
 
 // Recursive approach
 int knapsack(int W, int wt[], int val[], int n){
