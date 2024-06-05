@@ -28,11 +28,11 @@ int findMin(int a, int b, int c, int d) {
     return min;
 }
 
-int calcMisplaced(int puzzle[N][N]){
+int calcMisplaced(int puzzle[N][N], int goal[N][N]){
     int misplaced = 0 ;
     for(int i = 0 ; i<N ; i++){
         for(int j = 0 ; j<N ; j++){
-            if (puzzle[i][j] != 0 && puzzle[i][j] != N*i + j + 1) {
+            if (puzzle[i][j] != 0 && puzzle[i][j] != goal[i][j]) {
                 misplaced++;
             }
         }
@@ -78,12 +78,12 @@ bool isSolvable(int puzzle[N][N]) {
     }
 }
 
-void solvePuzzle(int puzzle[N][N]) {
+void solvePuzzle(int puzzle[N][N], int goal[N][N]) {
     if (!isSolvable(puzzle)) {
         printf("The puzzle is not solvable.\n");
         return;
     }
-    int res = calcMisplaced(puzzle);
+    int res = calcMisplaced(puzzle, goal);
     if(res==0){
         printf("\nGoal State Achieved\n");
         return;
@@ -106,25 +106,25 @@ void solvePuzzle(int puzzle[N][N]) {
     //left move 
     if(j-1>=0){
         swap(&puzzle[i][j], &puzzle[i][j-1]);
-        misplacedLeft = calcMisplaced(puzzle);
+        misplacedLeft = calcMisplaced(puzzle, goal);
         swap(&puzzle[i][j], &puzzle[i][j-1]);
     }
     //right move 
     if(j+1<N){
         swap(&puzzle[i][j], &puzzle[i][j+1]);
-        misplacedRight = calcMisplaced(puzzle);
+        misplacedRight = calcMisplaced(puzzle, goal);
         swap(&puzzle[i][j], &puzzle[i][j+1]);
     }
     //up move 
     if(i-1>=0){
         swap(&puzzle[i][j], &puzzle[i-1][j]);
-        misplacedUp = calcMisplaced(puzzle);
+        misplacedUp = calcMisplaced(puzzle, goal);
         swap(&puzzle[i][j], &puzzle[i-1][j]);
     } 
     //down move 
     if(i+1<N){
         swap(&puzzle[i][j], &puzzle[i+1][j]);
-        misplacedDown = calcMisplaced(puzzle);
+        misplacedDown = calcMisplaced(puzzle, goal);
         swap(&puzzle[i][j], &puzzle[i+1][j]);
     }
     
@@ -134,25 +134,25 @@ void solvePuzzle(int puzzle[N][N]) {
         swap(&puzzle[i][j], &puzzle[i][j-1]);
         printf("\nMove blank to left\n");
         printPuzzle(puzzle);
-        solvePuzzle(puzzle);
+        solvePuzzle(puzzle, goal);
     }
     else if(minimum == misplacedRight){
         swap(&puzzle[i][j], &puzzle[i][j+1]);
         printf("\nMove blank to right\n");
         printPuzzle(puzzle);
-        solvePuzzle(puzzle);
+        solvePuzzle(puzzle, goal);
     }
     else if(minimum == misplacedUp){
         swap(&puzzle[i][j], &puzzle[i-1][j]);
         printf("\nMove blank to up\n");
         printPuzzle(puzzle);
-        solvePuzzle(puzzle);
+        solvePuzzle(puzzle, goal);
     }
     else if(minimum == misplacedDown){
         swap(&puzzle[i][j], &puzzle[i+1][j]);
         printf("\nMove blank to down\n");
         printPuzzle(puzzle);
-        solvePuzzle(puzzle);
+        solvePuzzle(puzzle, goal);
     }
 
 }
@@ -163,9 +163,14 @@ int main() {
         {0, 4, 5},
         {7, 8, 6} 
     };
+    int goal[N][N] = {
+        {1,2,3},
+        {7,0,5},
+        {8,4,6}
+    };
     printf("\nInitial State of the puzzle\n");
     printPuzzle(puzzle);
-    solvePuzzle(puzzle);
+    solvePuzzle(puzzle, goal);
 
     return 0;
 }
