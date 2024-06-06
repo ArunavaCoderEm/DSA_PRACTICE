@@ -72,7 +72,7 @@ int main() {
 
     int max_profit = schedulejobs(profit, deadline, n);
 
-    printf("Total profit earned by scheduling jobs = %d\n", max_profit);
+    printf("Total profit earned by scheduling %d jobs\n", max_profit);
 
     return 0;
 }
